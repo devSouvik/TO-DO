@@ -16,7 +16,7 @@ class _DrawerNavigationState extends State<DrawerNavigation> {
           children: [
             UserAccountsDrawerHeader(
               accountName: Text('TO-DO'),
-              accountEmail: Text('Catagory and priority based TODO app'),
+              accountEmail: Text('Category and priority based TODO app'),
               currentAccountPicture: GestureDetector(
                 child: CircleAvatar(
                   backgroundColor: Colors.black54,

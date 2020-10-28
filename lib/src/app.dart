@@ -7,6 +7,9 @@ class App extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: HomeScreen(),
+      theme: ThemeData(
+        primarySwatch: Colors.red,
+      ),
     );
   }
 }
