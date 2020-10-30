@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:todo_app/services/category_service.dart';
+import 'package:todo_app/models/category.dart';
 import 'home_screen.dart';
 
 class CategoriesScreen extends StatefulWidget {
@@ -7,6 +9,13 @@ class CategoriesScreen extends StatefulWidget {
 }
 
 class _CategoriesScreenState extends State<CategoriesScreen> {
+
+  var _categoryName = TextEditingController();
+  var _categoryDescription = TextEditingController();
+
+  var _category = Category();
+  var _categoryService = CategoryService();
+
   _showFormInDialog(BuildContext context) {
     return showDialog(
         context: context,
@@ -22,7 +31,15 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
               ),
               FlatButton(
 
-                onPressed: () {  },
+                onPressed: () async {
+                  // print('category name: , ${_categoryName.text}');
+                  // print('category name: , ${_categoryDescription.text}');
+
+                  _category.name = _categoryName.text;
+                  _category.description = _categoryDescription.text;
+                  var result = await _categoryService.saveCategory(_category);
+                  print(result);
+                },
                 child: Text('save'),
 
               ),
@@ -32,12 +49,14 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
               child: Column(
                 children: [
                   TextField(
+                    controller: _categoryName,
                     decoration: InputDecoration(
                       labelText: 'Category name',
                       hintText: 'input category name',
                     ),
                   ),
                   TextField(
+                    controller: _categoryDescription,
                     decoration: InputDecoration(
                       labelText: 'Category description',
                       hintText: 'input category description',
@@ -85,4 +104,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
       ),
     );
   }
+}
+
+class _Category {
 }
